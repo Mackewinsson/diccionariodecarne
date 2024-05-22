@@ -1,12 +1,8 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import logo from "@img/logo.png";
-import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Navbar = () => {
-  const { user, error, isLoading } = useUser();
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -34,43 +30,18 @@ const Navbar = () => {
             <li>
               <Link href={"/"}>Login</Link>
               <ul className="p-2">
-                {user ? (
-                  <li>
-                    <Link href={"/api/auth/logout"}>Cerrar Sesion</Link>
-                  </li>
-                ) : (
-                  <li>
-                    <Link href={"/api/auth/login"}>Iniciar Sesion</Link>
-                  </li>
-                )}
+                <Link href={"/api/auth/logout"}>Cerrar Sesion</Link>
+
+                <li>
+                  <Link href={"/api/auth/login"}>Iniciar Sesion</Link>
+                </li>
               </ul>
             </li>
           </ul>
         </div>
         <Link href={"/"} className="btn btn-ghost text-xl">
-          <Image src={logo} alt="logo wise-ass" width={40} /> WISE-ASS
+          Diccionario de carne
         </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        {user && <div>Hola 👋 {user.name}</div>}
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <details>
-              <summary>Login</summary>
-              <ul className="p-2">
-                {user ? (
-                  <li>
-                    <Link href={"/api/auth/logout"}>Cerrar Sesion</Link>
-                  </li>
-                ) : (
-                  <li>
-                    <Link href={"/api/auth/login"}>Iniciar Sesion</Link>
-                  </li>
-                )}
-              </ul>
-            </details>
-          </li>
-        </ul>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@
 
 import User from "../../model/User";
 
-const { getSession } = require("@auth0/nextjs-auth0");
 const { default: connectDB } = require("../../app/lib/connectDB");
 
 export default async function createUser() {
